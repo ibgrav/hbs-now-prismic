@@ -1,10 +1,10 @@
-import { Client, linkResolver } from '../../utils/prismic-configuration';
+import { Client, hrefResolver } from '../../utils/prismic-configuration';
 
 export default async (req, res) => {
   const token = req.query.token;
   if (token) {
     try {
-      const url = await Client(req).previewSession(token, linkResolver, '/')
+      const url = await Client(req).previewSession(token, hrefResolver, '/')
       res.writeHead(302, { Location: url })
       res.end()
     } catch {
